@@ -1,0 +1,33 @@
+package com.truckmuncher.api.v1.healthcheck;
+
+/**
+ * Check the health of the server and your connection
+ */
+service HealthCheckService {
+
+    /**
+     * Runs a light test across all services, and checks your request for correctness.
+     */
+    rpc healthcheck (HealthRequest) returns (HealthResponse);
+}
+
+message HealthResponse {
+    required Status status = 1 [default = BAD];
+    optional string revision = 2;
+    optional Status nonce = 3 [default = BAD];
+    optional Status timestamp = 4 [default = BAD];
+    repeated Check check = 5;
+
+    message Check {
+        required string key = 1;
+        required Status value= 2;
+    }
+
+    enum Status {
+        OK = 1;
+        BAD = 2;
+    }
+}
+
+message HealthRequest {
+}
