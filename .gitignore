@@ -1,3 +1,4 @@
 .DS_Store
 .proto_cache/
 proto-bundle.json
+build/
