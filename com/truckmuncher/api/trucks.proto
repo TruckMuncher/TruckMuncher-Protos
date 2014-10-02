@@ -1,0 +1,133 @@
+package com.truckmuncher.api.trucks;
+
+/**
+ * TODO
+ */
+service TruckService {
+
+    /**
+     * Get the locations of active food trucks in the Region in which the search is performed.
+     */
+    rpc getActiveTrucks (ActiveTrucksRequest) returns (ActiveTrucksResponse);
+
+    /**
+     * If a truck for the vendor does not exist, a new truck will be created.
+     * When using from a native app, check the response and handle the case of an incomplete truck.
+     *
+     * This call requires Vendor authorization
+     */
+    rpc getTrucksForVendor (TrucksForVendorRequest) returns (TrucksForVendorResponse);
+
+    /**
+     * Get the profiles of all the food trucks in the user's Region.
+     */
+    rpc getTruckProfiles (TruckProfilesRequest) returns (TruckProfilesResponse);
+
+    /**
+     * Use this to create or update a truck. Any data sent in the request will be used, even if the truck did not previously exist.
+     *
+     * This call requires Vendor authorization
+     */
+    rpc modifyTruckProfile (Truck) returns (Truck);
+
+    /**
+     * Modify the serving mode for a truck.
+     *
+     * This call requires Vendor authorization
+     */
+    rpc modifyServingMode (ServingModeRequest) returns (ServingModeResponse);
+}
+
+message ActiveTrucksRequest {
+    /**
+     * Value in the range [-90, 90]
+     */
+    required double latitude = 1;
+    /**
+     * Value in the range [-180, 180]
+     */
+    required double longitude = 2;
+    optional string searchQuery = 3;
+}
+
+message ActiveTrucksResponse {
+    repeated Truck truck = 1;
+
+    message Truck {
+        /**
+         * Suitable for unique identification.
+         */
+        required string id = 1;
+        /**
+         * Value in the range [-90, 90]
+         */
+        required double latitude = 2;
+        /**
+         * Value in the range [-180, 180]
+         */
+        required double longitude = 3;
+    }
+}
+
+message TrucksForVendorRequest {
+}
+
+/**
+ * The included trucks will always have a valid id.
+ */
+message TrucksForVendorResponse {
+    repeated Truck truck = 1;
+    /**
+     * If true, then a new Truck was created during this request. On native apps, this will need to be handled.
+     * If false, the trucks previously existed.
+     */
+    required bool isNew = 2 [default = true];
+}
+
+message TruckProfilesRequest {
+    /**
+     * Value in the range [-90, 90]
+     */
+    required double latitude = 1;
+    /**
+     * Value in the range [-180, 180]
+     */
+    required double longitude = 2;
+}
+
+message TruckProfilesResponse {
+    repeated Truck trucks = 1;
+}
+
+message Truck {
+    /**
+     * Suitable for unique identification. Will always be set on a response from the API.
+     */
+    optional string id = 1;
+    optional string name = 2;
+    optional string imageUrl = 3;
+    /**
+     * These are likely going to be the cuisines the truck targets, but might also be something like "soup", "panini", or "vegan"
+     */
+    repeated string keywords = 4;
+}
+
+message ServingModeRequest {
+    /**
+     * Suitable for unique identification.
+     */
+    required string truckId = 1;
+    required bool isInServingMode = 2;
+    /**
+     * Value in the range [-90, 90]
+     */
+    optional double truckLatitude = 3;
+    /**
+     * Value in the range [-180, 180]
+     */
+    optional double truckLongitude = 4;
+}
+
+message ServingModeResponse {
+}
+

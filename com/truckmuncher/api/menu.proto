@@ -1,0 +1,154 @@
+package com.truckmuncher.api.menu;
+
+/**
+ * The MenuService is used to interact with menus. The service is built to separate persistent state from volatile state when possible.
+ */
+service MenuService {
+
+    /**
+     * Returns the full MenuItems availability for the entire region.
+     */
+    rpc getMenuItemAvailability (MenuItemAvailabilityRequest) returns (MenuItemAvailabilityResponse);
+
+    /**
+     * Get all of the menus in the user's region.
+     */
+    rpc getFullMenus (FullMenusRequest) returns (FullMenusResponse);
+
+    /**
+     * Use this to get a single menu.
+     */
+    rpc getMenu (MenuRequest) returns (MenuResponse);
+
+    /**
+     * Declare which MenuItems are changing in availability.
+     *
+     * This call requires Vendor authorization
+     */
+    rpc modifyMenuItemAvailability (ModifyMenuItemAvailabilityRequest) returns (ModifyMenuItemAvailabilityResponse);
+}
+
+/**
+ * The latitude/longitude are used to determine the Region in which the user is. This will scope the availability to just those MenuItems.
+ */
+message MenuItemAvailabilityRequest {
+    /**
+     * Value in the range [-90, 90]
+     */
+    required double latitude = 1;
+    /**
+     * Value in the range [-180, 180]
+     */
+    required double longitude = 2;
+}
+
+message MenuItemAvailabilityResponse {
+    /**
+     * The complete MenuItem availability for the region the user is in.
+     */
+    repeated MenuItemAvailability availabilities = 1;
+}
+
+/**
+ * The latitude/longitude are used to determine the Region in which the user is. This will scope the request to just those MenuItems.
+ */
+message FullMenusRequest {
+    /**
+     * Value in the range [-90, 90]
+     */
+    required double latitude = 1;
+    /**
+     * Value in the range [-180, 180]
+     */
+    required double longitude = 2;
+    /**
+     * If true, the response will include the availbility on the MenuItems
+     */
+    optional bool includeAvailability = 3 [default = false];
+}
+
+/**
+ * WARNING: The MenmuItem availability will only be set if the request specified that it should be.
+ */
+message FullMenusResponse {
+    repeated Menu menus = 1;
+}
+
+message MenuRequest {
+    /**
+     * Suitable for unique identification.
+     */
+    required string truckId = 1;
+}
+
+message MenuResponse {
+    required Menu menu = 1;
+}
+
+message ModifyMenuItemAvailabilityRequest {
+    /**
+     * The changes that should be applied on the server.
+     */
+    repeated MenuItemAvailability diff = 1;
+}
+
+message ModifyMenuItemAvailabilityResponse {
+}
+
+/**
+ * Menu's are meta-objects used only for data transport
+ */
+message Menu {
+    /**
+     * Suitable for unique identification.
+     */
+    required string truckId = 1;
+    repeated Category categories = 2;
+}
+
+message Category {
+    /**
+     * Suitable for unique identification.
+     */
+    optional string id = 1;
+    optional string name = 2;
+    /**
+     * Suitable for human consumption
+     */
+    optional string notes = 3;
+    /**
+     * Indexed on 0.
+     */
+    optional int32 orderInMenu = 4;
+    repeated MenuItem menuItems = 5;
+}
+
+message MenuItem {
+    /**
+     * Suitable for unique identification.
+     */
+    optional string id = 1;
+    required string name = 2;
+    /**
+     * Formatted for standard USD. Suitable for human consumption.
+     */
+    required float price = 3;
+    optional string notes = 4;
+    /**
+     * Meta data about the menu item. Ex. [bread, chicken, bacon]
+     */
+    repeated string tags = 5;
+    /**
+     * Indexed on 0.
+     */
+    optional int32 orderInCategory = 6;
+    optional bool isAvailable = 7;
+}
+
+message MenuItemAvailability {
+    /**
+     * Suitable for unique identification.
+     */
+    required string menuItemId = 1;
+    required bool isAvailable = 2;
+}
