@@ -1,4 +1,4 @@
 [
   { "git": "https://github.com/hassox/google-protos.git" },
-  { "local": "./", "paths": { "/": ["com/truckmuncher/api/v1"] }}
+  { "local": "./", "paths": { "/": ["com/truckmuncher/api"] }}
 ]

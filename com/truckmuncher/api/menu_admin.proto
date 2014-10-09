@@ -1,0 +1,127 @@
+package com.truckmuncher.api.menuadmin;
+
+import "com/truckmuncher/api/menu.proto";
+
+/**
+ * The MenuAdminService is used to offer administrator panel functionality.
+ */
+service MenuAdminService {
+
+    /**
+     * Use this to get a single MenuItem.
+     */
+    rpc getMenuItem (MenuItemRequest) returns (MenuItemResponse);
+
+    /**
+     * This call requires Vendor authorization
+     */
+    rpc modifyMenuItem (ModifyMenuItemRequest) returns (ModifyMenuItemResponse);
+
+    /**
+     * This call requires Vendor authorization
+     */
+    rpc deleteMenuItem (DeleteMenuItemRequest) returns (DeleteMenuItemResponse);
+
+    /**
+     * This call requires Vendor authorization
+     */
+    rpc modifyCategory (ModifyCategoryRequest) returns (ModifyCategoryResponse);
+
+    /**
+     * This call requires Vendor authorization
+     */
+    rpc deleteCategory (DeleteCategoryRequest) returns (DeleteCategoryResponse);
+
+    /**
+     * This call requires Vendor authorization
+     */
+    rpc getValidMenuItemTags (MenuItemTagsRequest) returns (MenuItemTagsResponse);
+}
+
+message MenuItemRequest {
+    /**
+     * Suitable for unique identification.
+     */
+    required string menuItemId = 1;
+}
+
+message MenuItemResponse {
+    required com.truckmuncher.api.menu.MenuItem menuItem = 1;
+}
+
+message ModifyMenuItemRequest {
+    /**
+     * Suitable for unique identification.
+     */
+    required string truckId = 1;
+    /**
+     * Suitable for unique identification.
+     */
+    required string categoryId = 2;
+    required com.truckmuncher.api.menu.MenuItem menuItem = 3;
+}
+
+/**
+ * Contains the fully updated menu
+ */
+message ModifyMenuItemResponse {
+    /**
+     * The full menu. This will be included every time, and is optional only to allow for future flexibility.
+     */
+    optional com.truckmuncher.api.menu.Menu menu = 1;
+}
+
+message DeleteMenuItemRequest {
+    /**
+     * Suitable for unique identification.
+     */
+    required string menuItemId = 1;
+}
+
+message DeleteMenuItemResponse {
+    /**
+     * The full menu. This will be included every time, and is optional only to allow for future flexibility.
+     */
+    optional com.truckmuncher.api.menu.Menu menu = 1;
+}
+
+message ModifyCategoryRequest {
+    /**
+     * Suitable for unique identification. Use the default if unset.
+     */
+    optional string id = 1 [default = ""];
+    optional string name = 2;
+    /**
+     * Suitable for human consumption
+     */
+    optional string notes = 3;
+    optional int32 orderInMenu = 4;
+}
+
+message ModifyCategoryResponse {
+    /**
+     * The full menu. This will be included every time, and is optional only to allow for future flexibility.
+     */
+    optional com.truckmuncher.api.menu.Menu menu = 1;
+}
+
+message DeleteCategoryRequest {
+    /**
+     * Suitable for unique identification.
+     */
+    required string categoryId = 1;
+}
+
+message DeleteCategoryResponse {
+    /**
+     * The full menu. This will be included every time, and is optional only to allow for future flexibility.
+     */
+    optional com.truckmuncher.api.menu.Menu menu = 1;
+}
+
+message MenuItemTagsRequest {
+}
+
+message MenuItemTagsResponse {
+    repeated string tags = 1;
+}

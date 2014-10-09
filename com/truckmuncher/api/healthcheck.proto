@@ -1,4 +1,4 @@
-package com.truckmuncher.api.v1.healthcheck;
+package com.truckmuncher.api.healthcheck;
 
 /**
  * Check the health of the server and your connection
@@ -16,7 +16,9 @@ message HealthResponse {
     optional string revision = 2;
     optional Status nonce = 3 [default = BAD];
     optional Status timestamp = 4 [default = BAD];
-    repeated Check check = 5;
+    repeated Check checks = 5;
+    optional Status externalServicesStatus = 6;
+    repeated ExternalService externalServices = 7;
 
     message Check {
         required string key = 1;
@@ -26,6 +28,11 @@ message HealthResponse {
     enum Status {
         OK = 1;
         BAD = 2;
+    }
+
+    message ExternalService {
+        required string key = 1;
+        optional string value = 2;
     }
 }
 

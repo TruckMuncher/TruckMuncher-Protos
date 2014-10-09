@@ -1,0 +1,15 @@
+package com.truckmuncher.api;
+
+/**
+ * Generic error message that will be in the response body if your request results in an error.
+ */
+message Error {
+    /**
+     * An internal code with which we can quickly scan logs. This is different from the HTTP response code. Log this value.
+     */
+    required string internalCode = 1;
+    /**
+     * A human-consumable message explaining the error.
+     */
+    required string userMessage = 2;
+}
