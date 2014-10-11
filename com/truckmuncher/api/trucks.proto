@@ -1,8 +1,5 @@
 package com.truckmuncher.api.trucks;
 
-/**
- * TODO
- */
 service TruckService {
 
     /**
@@ -51,7 +48,7 @@ message ActiveTrucksRequest {
 }
 
 message ActiveTrucksResponse {
-    repeated Truck truck = 1;
+    repeated Truck trucks = 1;
 
     message Truck {
         /**
@@ -76,7 +73,7 @@ message TrucksForVendorRequest {
  * The included trucks will always have a valid id.
  */
 message TrucksForVendorResponse {
-    repeated Truck truck = 1;
+    repeated Truck trucks = 1;
     /**
      * If true, then a new Truck was created during this request. On native apps, this will need to be handled.
      * If false, the trucks previously existed.
