@@ -1,4 +1,4 @@
-package com.truckmuncher.api;
+package com.truckmuncher.api.exceptions;
 
 /**
  * Generic error message that will be in the response body if your request results in an error.

@@ -81,6 +81,10 @@ message DeleteMenuItemRequest {
      * Suitable for unique identification.
      */
     required string menuItemId = 1;
+    /**
+     * Suitable for unique identification.
+     */
+    required string truckId = 2;
 }
 
 message DeleteMenuItemResponse {
@@ -112,6 +116,10 @@ message ModifyCategoryRequest {
      */
     optional string notes = 3;
     optional int32 orderInMenu = 4;
+    /**
+     * Suitable for unique identification.
+     */
+    required string truckId = 5;
 }
 
 message ModifyCategoryResponse {
@@ -126,6 +134,10 @@ message DeleteCategoryRequest {
      * Suitable for unique identification.
      */
     required string categoryId = 1;
+    /**
+     * Suitable for unique identification.
+     */
+    required string truckId = 2;
 }
 
 message DeleteCategoryResponse {
