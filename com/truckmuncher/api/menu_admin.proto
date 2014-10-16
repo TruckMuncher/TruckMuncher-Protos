@@ -23,6 +23,11 @@ service MenuAdminService {
     rpc deleteMenuItem (DeleteMenuItemRequest) returns (DeleteMenuItemResponse);
 
     /**
+     * Use this to get a single Category.
+     */
+    rpc getCategory (CategoryRequest) returns (CategoryResponse);
+
+    /**
      * This call requires Vendor authorization
      */
     rpc modifyCategory (ModifyCategoryRequest) returns (ModifyCategoryResponse);
@@ -83,6 +88,17 @@ message DeleteMenuItemResponse {
      * The full menu. This will be included every time, and is optional only to allow for future flexibility.
      */
     optional com.truckmuncher.api.menu.Menu menu = 1;
+}
+
+message CategoryRequest {
+    /**
+     * Suitable for unique identification.
+     */
+    required string categoryId = 1;
+}
+
+message CategoryResponse {
+    required com.truckmuncher.api.menu.Category category = 1;
 }
 
 message ModifyCategoryRequest {
