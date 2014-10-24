@@ -63,7 +63,7 @@ message ModifyMenuItemRequest {
      * Suitable for unique identification.
      */
     required string categoryId = 2;
-    required com.truckmuncher.api.menu.MenuItem menuItem = 3;
+    repeated com.truckmuncher.api.menu.MenuItem menuItem = 3;
 }
 
 /**
@@ -106,20 +106,24 @@ message CategoryResponse {
 }
 
 message ModifyCategoryRequest {
-    /**
-     * Suitable for unique identification. Use the default if unset.
-     */
-    optional string id = 1 [default = ""];
-    optional string name = 2;
-    /**
-     * Suitable for human consumption
-     */
-    optional string notes = 3;
-    optional int32 orderInMenu = 4;
+    repeated Category categories = 1;
     /**
      * Suitable for unique identification.
      */
-    required string truckId = 5;
+    required string truckId = 2;
+
+    message Category {
+        /**
+         * Suitable for unique identification. Use the default if unset.
+         */
+        optional string id = 1 [default = ""];
+        optional string name = 2;
+        /**
+         * Suitable for human consumption
+         */
+        optional string notes = 3;
+        optional int32 orderInMenu = 4;
+    }
 }
 
 message ModifyCategoryResponse {
