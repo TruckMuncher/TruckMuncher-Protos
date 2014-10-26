@@ -63,7 +63,7 @@ message ModifyMenuItemRequest {
      * Suitable for unique identification.
      */
     required string categoryId = 2;
-    repeated com.truckmuncher.api.menu.MenuItem menuItem = 3;
+    repeated com.truckmuncher.api.menu.MenuItem menuItems = 3;
 }
 
 /**
