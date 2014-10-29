@@ -28,7 +28,7 @@ message AuthResponse {
      */
     required string id = 1;
     /**
-     * The Twitter of Facebook username.
+     * The Twitter or Facebook username.
      */
     required string username = 2;
     /**
