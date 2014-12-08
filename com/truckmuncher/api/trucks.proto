@@ -107,6 +107,14 @@ message Truck {
      * These are likely going to be the cuisines the truck targets, but might also be something like "soup", "panini", or "vegan"
      */
     repeated string keywords = 4;
+    /**
+     * Hex code in the format of #RRGGBB
+     */
+    optional string primaryColor = 5;
+    /**
+     * Hex code in the format of #RRGGBB
+     */
+    optional string secondaryColor = 6;
 }
 
 message ServingModeRequest {
