@@ -25,7 +25,7 @@ service TruckService {
      *
      * This call requires Vendor authorization
      */
-    rpc modifyTruckProfile (Truck) returns (Truck);
+    rpc modifyTruckProfile (ModifyTruckRequest) returns (Truck);
 
     /**
      * Modify the serving mode for a truck.
@@ -94,6 +94,18 @@ message TruckProfilesRequest {
 
 message TruckProfilesResponse {
     repeated Truck trucks = 1;
+}
+
+message ModifyTruckRequest {
+    /**
+     * Suitable for unique identification. Will always be set on a response from the API.
+     */
+    optional string id = 1;
+    optional string name = 2;
+    /**
+     * These are likely going to be the cuisines the truck targets, but might also be something like "soup", "panini", or "vegan"
+     */
+    repeated string keywords = 3;
 }
 
 message Truck {
