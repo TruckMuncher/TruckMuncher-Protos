@@ -106,6 +106,14 @@ message ModifyTruckRequest {
      * These are likely going to be the cuisines the truck targets, but might also be something like "soup", "panini", or "vegan"
      */
     repeated string keywords = 3;
+    /**
+     * Hex code in the format of #RRGGBB
+     */
+    optional string primaryColor = 4;
+    /**
+     * Hex code in the format of #RRGGBB
+     */
+    optional string secondaryColor = 5;
 }
 
 message Truck {
