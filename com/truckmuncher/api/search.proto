@@ -1,0 +1,43 @@
+package com.truckmuncher.api.search;
+
+import "com/truckmuncher/api/trucks.proto";
+import "com/truckmuncher/api/menu.proto";
+
+/**
+ * The SearchService is used to offer full text search functionality to find trucks given filter criteria.
+ */
+service SearchService {
+
+    /**
+     * A simple search to find all trucks containing all terms in the given request
+     */
+    rpc simpleSearch (SimpleSearchRequest) returns (SearchResponse);
+}
+
+message SimpleSearchRequest {
+    /**
+     * A string containing any number of terms to search for
+     */
+    required string query = 1;
+}
+
+message SimpleSearchResponse {
+    repeated SearchResponse searchResponse = 1;
+}
+
+message SearchResponse {
+    /**
+     * A short contextual blurb including the search term. This highlights why this search result was included
+     */
+    required string blurb = 1;
+
+    /**
+     * The truck included in this specific search result
+     */
+    required com.truckmuncher.api.trucks.Truck truck = 2;
+
+    /**
+     * The full menu belonging to the given truck
+     */
+    required com.truckmuncher.api.menu.Menu menu = 3;
+}
