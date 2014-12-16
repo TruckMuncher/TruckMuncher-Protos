@@ -19,6 +19,16 @@ message SimpleSearchRequest {
      * A string containing any number of terms to search for
      */
     required string query = 1;
+
+    /**
+     * The number of results to return
+     */
+     optional int32 limit = 2 [default = 20];
+
+     /**
+     * The number of results to skip
+     */
+     optional int32 offset = 3 [default = 0];
 }
 
 message SimpleSearchResponse {
