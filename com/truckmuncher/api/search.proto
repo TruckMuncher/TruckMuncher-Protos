@@ -12,6 +12,8 @@ service SearchService {
      * A simple search to find all trucks containing all terms in the given request
      */
     rpc simpleSearch (SimpleSearchRequest) returns (SearchResponse);
+
+    rpc advancedSearch (AdvancedSearchRequest) returns (SearchResponse);
 }
 
 message SimpleSearchRequest {
@@ -31,11 +33,15 @@ message SimpleSearchRequest {
      optional int32 offset = 3 [default = 0];
 }
 
-message SimpleSearchResponse {
-    repeated SearchResponse searchResponse = 1;
+message AdvancedSearchRequest {
+    
 }
 
 message SearchResponse {
+    repeated SearchResult searchResults = 1;
+}
+
+message SearchResult {
     /**
      * A short contextual blurb including the search term. This highlights why this search result was included
      */
