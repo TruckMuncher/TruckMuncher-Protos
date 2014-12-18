@@ -11,7 +11,7 @@ service SearchService {
     /**
      * A simple search to find all trucks containing all terms in the given request
      */
-    rpc simpleSearch (SimpleSearchRequest) returns (SearchResponse);
+    rpc simpleSearch (SimpleSearchRequest) returns (SimpleSearchResponse);
 }
 
 message SimpleSearchRequest {
