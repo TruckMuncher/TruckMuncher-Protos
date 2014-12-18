@@ -36,7 +36,7 @@ message SimpleSearchRequest {
       * the ability to say "no I actually meant to search for XXX, don't correct it this time". Then set this flag
       * to true.
       */
-      optional boolean skipCorrection = 4 [default = false];
+      optional bool skipCorrection = 4 [default = false];
 }
 
 message SimpleSearchResponse {
