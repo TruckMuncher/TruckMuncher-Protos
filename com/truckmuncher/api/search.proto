@@ -12,8 +12,6 @@ service SearchService {
      * A simple search to find all trucks containing all terms in the given request
      */
     rpc simpleSearch (SimpleSearchRequest) returns (SearchResponse);
-
-    rpc advancedSearch (AdvancedSearchRequest) returns (SearchResponse);
 }
 
 message SimpleSearchRequest {
@@ -31,17 +29,33 @@ message SimpleSearchRequest {
      * The number of results to skip
      */
      optional int32 offset = 3 [default = 0];
+
+     /**
+      * A flag to signal to the API to NOT make spelling corrections and to search for the given query no matter
+      * how many results are returned. First set this to false, then return the corrected results but offer the user 
+      * the ability to say "no I actually meant to search for XXX, don't correct it this time". Then set this flag
+      * to true.
+      */
+      optional boolean skipCorrection = 4 [default = false];
 }
 
-message AdvancedSearchRequest {
-    
+message SimpleSearchResponse {
+    repeated SearchResponse searchResponse = 1;
+
+    /**
+     * The actual word used in the query. May differ from the request query due to spelling corrections.
+     * Use this to replace the query in the search bar and then offer suggestions
+     */
+    required string word = 2;
+
+    /**
+     * A list of suggested spelling alternatives. This will be populated if your query was corrected and there are less than 10 results.
+     * These will be in order of most likely first to least likely last
+     */
+    repeated string suggestions = 3;
 }
 
 message SearchResponse {
-    repeated SearchResult searchResults = 1;
-}
-
-message SearchResult {
     /**
      * A short contextual blurb including the search term. This highlights why this search result was included
      */
