@@ -37,6 +37,16 @@ message SimpleSearchRequest {
       * to true.
       */
       optional bool skipCorrection = 4 [default = false];
+
+      /**
+       * Flag indicating if you want to restrict your search to gluten free items only
+       */
+      optional bool glutenFree = 5 [default = false];
+
+      /**
+       * Flag indicating if you want to restrict you search to items without peanuts only
+       */
+      optional bool peanutFree = 6 [default = false];
 }
 
 message SimpleSearchResponse {
