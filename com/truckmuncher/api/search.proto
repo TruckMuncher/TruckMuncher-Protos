@@ -53,10 +53,10 @@ message SimpleSearchResponse {
     repeated SearchResponse searchResponse = 1;
 
     /**
-     * The actual word used in the query. May differ from the request query due to spelling corrections.
+     * The actual query used. May differ from the request query due to spelling corrections.
      * Use this to replace the query in the search bar and then offer suggestions
      */
-    required string word = 2;
+    required string correctedQuery = 2;
 
     /**
      * A list of suggested spelling alternatives. This will be populated if your query was corrected and there are less than 10 results.
