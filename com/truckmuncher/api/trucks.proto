@@ -33,6 +33,20 @@ service TruckService {
      * This call requires Vendor authorization
      */
     rpc modifyServingMode (ServingModeRequest) returns (ServingModeResponse);
+
+    /**
+     * Requests that a truck gets approval from a member of our team to go live and get placed on the map.
+     * 
+     * This call requires Vendor authorization
+     */
+     rpc requestApproval (ApprovalRequest) returns (ApprovalResponse);
+
+     /**
+      * Requests the current status of your truck's approval process. 
+      * 
+      * This call requires Vendor authorization
+      */
+     rpc checkApprovalStatus (ApprovalStatusRequest) returns (ApprovalStatusResponse);
 }
 
 message ActiveTrucksRequest {
@@ -135,6 +149,10 @@ message Truck {
      * Hex code in the format of #RRGGBB
      */
     optional string secondaryColor = 6;
+
+    optional bool approved = 7;
+
+    optional bool approvalPending = 8;
 }
 
 message ServingModeRequest {
@@ -156,3 +174,31 @@ message ServingModeRequest {
 message ServingModeResponse {
 }
 
+message ApprovalRequest {
+    /**
+     * Suitable for unique identification.
+     */
+    required string truckId = 1;
+
+    /**
+     * The best email address to contact the owner of the given truck.
+     */
+    required string email = 2;
+}
+
+message ApprovalResponse {
+}
+
+message ApprovalStatusRequest {
+    /**
+     * Suitable for unique identification.
+     */
+    required string truckId = 1;
+}
+
+message ApprovalStatusResponse {
+    /**
+     * The current status of your approval
+     */
+    required string status = 1;
+}
