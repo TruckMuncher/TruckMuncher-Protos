@@ -139,6 +139,10 @@ message Truck {
      * A free-form description of the truck. 4000 character max.
      */
     optional string description = 7;
+    /**
+     * Should be in the format of (xxx) xxx-xxxx.
+     */
+    optional string phoneNumber = 8;
 }
 
 message ServingModeRequest {
