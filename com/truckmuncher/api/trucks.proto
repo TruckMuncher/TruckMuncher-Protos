@@ -135,6 +135,10 @@ message Truck {
      * Hex code in the format of #RRGGBB
      */
     optional string secondaryColor = 6;
+    /**
+     * A free-form description of the truck. 4000 character max.
+     */
+    optional string description = 7;
 }
 
 message ServingModeRequest {
