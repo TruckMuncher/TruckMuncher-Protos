@@ -114,6 +114,14 @@ message ModifyTruckRequest {
      * Hex code in the format of #RRGGBB
      */
     optional string secondaryColor = 5;
+    /**
+     * A free-form description of the truck. 4000 character max.
+     */
+    optional string description = 6;
+    /**
+     * Should be in the format of (xxx) xxx-xxxx.
+     */
+    optional string phoneNumber = 7;
 }
 
 message Truck {
