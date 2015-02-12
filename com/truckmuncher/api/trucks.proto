@@ -115,7 +115,7 @@ message ModifyTruckRequest {
      */
     optional string secondaryColor = 5;
     /**
-     * A free-form description of the truck. 4000 character max.
+     * A free-form description of the truck
      */
     optional string description = 6;
     /**
@@ -144,7 +144,7 @@ message Truck {
      */
     optional string secondaryColor = 6;
     /**
-     * A free-form description of the truck. 4000 character max.
+     * A free-form description of the truck
      */
     optional string description = 7;
     /**
