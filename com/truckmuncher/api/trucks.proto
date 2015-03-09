@@ -128,6 +128,14 @@ message ModifyTruckRequest {
      * Hex code in the format of #RRGGBB
      */
     optional string secondaryColor = 5;
+    /**
+     * A free-form description of the truck
+     */
+    optional string description = 6;
+    /**
+     * Should be in the format of (xxx) xxx-xxxx.
+     */
+    optional string phoneNumber = 7;
 }
 
 message Truck {
@@ -149,10 +157,18 @@ message Truck {
      * Hex code in the format of #RRGGBB
      */
     optional string secondaryColor = 6;
+    /**
+     * A free-form description of the truck
+     */
+    optional string description = 7;
+    /**
+     * Should be in the format of (xxx) xxx-xxxx.
+     */
+    optional string phoneNumber = 8;
 
-    optional bool approved = 7;
+    optional bool approved = 9;
 
-    optional bool approvalPending = 8;
+    optional bool approvalPending = 10;
 }
 
 message ServingModeRequest {
