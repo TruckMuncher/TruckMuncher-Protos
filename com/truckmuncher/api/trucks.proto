@@ -136,6 +136,10 @@ message ModifyTruckRequest {
      * Should be in the format of (xxx) xxx-xxxx.
      */
     optional string phoneNumber = 7;
+    /**
+     * If true, then location will be reported when trucks enter serving mode.
+     */
+    optional bool postToSocialServices = 8;
 }
 
 message Truck {
@@ -169,6 +173,10 @@ message Truck {
     optional bool approved = 9;
 
     optional bool approvalPending = 10;
+    /**
+     * If true, then location will be reported when trucks enter serving mode.
+     */
+    optional bool postToSocialServices = 11;
 }
 
 message ServingModeRequest {
@@ -185,6 +193,14 @@ message ServingModeRequest {
      * Value in the range [-180, 180]
      */
     optional double truckLongitude = 4;
+    /**
+     * Used by the server to post a location to Twitter
+     */
+    optional string twitterToken = 5;
+    /**
+     * Used by the server to post a location to Facebook
+     */
+    optional string facebookToken = 6;
 }
 
 message ServingModeResponse {
