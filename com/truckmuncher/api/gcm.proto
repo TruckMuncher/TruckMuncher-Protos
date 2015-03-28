@@ -1,0 +1,20 @@
+package com.truckmuncher.api.gcm;
+
+/**
+ * The GcmService is used to register Android devices for push messages.
+ */
+service GcmService {
+
+    rpc registerForGcm (GcmRegistrationRequest) returns (GcmRegistrationResponse);
+}
+
+message GcmRegistrationRequest {
+    /**
+     * Unique identifier for the installation
+     */
+    required string installationId = 1;
+    optional string gcmRegistrationId = 2;
+}
+
+message GcmRegistrationResponse {
+}
