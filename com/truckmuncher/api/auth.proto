@@ -1,5 +1,7 @@
 package com.truckmuncher.api.auth;
 
+import "com/truckmuncher/api/user.proto";
+
 /**
  * The AuthService is used to sign in and out of TruckMuncher.
  */
@@ -8,7 +10,7 @@ service AuthService {
     /**
      * Returns the full User model plus a session token.
      */
-    rpc getAuth (AuthRequest) returns (AuthResponse);
+    rpc getAuth (AuthRequest) returns (UserResponse);
 
     /**
      * Deletes an existing session if it exists.
@@ -17,24 +19,6 @@ service AuthService {
 }
 
 message AuthRequest {
-}
-
-/**
- * The full user model plus a session token.
- */
-message AuthResponse {
-    /**
-     * Uniquely identifies the logged in user.
-     */
-    required string userId = 1;
-    /**
-     * The Twitter or Facebook username.
-     */
-    required string username = 2;
-    /**
-     * The session token used on all further requests.
-     */
-    required string sessionToken = 3;
 }
 
 message DeleteAuthResponse {

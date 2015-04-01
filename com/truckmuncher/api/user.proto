@@ -1,0 +1,104 @@
+package com.truckmuncher.api.user;
+
+service UserService {
+
+    /**
+     * Link another social media account to your existing account. This can be used by regular
+     * users or vendors.
+     *
+     * This call requires authorization
+     */
+    rpc linkAccount (LinkAccountRequest) returns (UserResponse);
+
+    /**
+     * Unlink a social media account that has been previously linked to your existing account. This can 
+     * be used by regular users or vendors.
+     *
+     * This call requires authorization
+     */
+    rpc unlinkAccounts (UnlinkAccountsRequest) returns (UserResponse);
+
+    /**
+     * Update a user's account. This can be used by regular users or vendors.
+     *
+     * This call requires authorization
+     */
+    rpc updateAccount (UpdateAccountRequest) returns (UserResponse);
+
+    /**
+     * Adds a truck to a User's list of favorite trucks. This can be used by regular users
+     * or vendors.
+     *
+     * This call requires authorization
+     */
+    rpc addFavorite (FavoriteRequest) returns (FavoriteResponse);
+
+    /**
+     * Removes a truck from a User's list of favorite trucks. This can be used by regular users
+     * or vendors.
+     *
+     * This call requires authorization
+     */
+    rpc removeFavorite (FavoriteRequest) returns (FavoriteResponse);
+}
+
+message LinkAccountRequest {
+}
+
+message UnlinkAccountsRequest {
+    /**
+     * Determines whether or not to unlink your Twitter account.
+     */
+    optional boolean twitter = 1;
+    /**
+     * Determines whether or not to unlink your Facebook account.
+     */
+    optional boolean facebook = 2;
+}
+
+message FavoriteRequest {
+    /**
+     * The unique ID of the favorite truck.
+     */
+    required string truckId = 1;
+}
+
+message FavoriteResponse {
+    /**
+     * The list of truckIds that are currently favorited by the User.
+     */
+    repeated string favorites = 1;
+}
+
+message UserResponse {
+    /**
+     * Suitable for unique identification.
+     */
+    required string id = 1;
+    /**
+     * The username of the linked Facebook account.
+     *
+     * Will be null if a Facebook account has not been linked.
+     */
+    optional string fbUsername = 2;
+    /**
+     * The username of the linked Twitter account.
+     *
+     * Will be null if a Twitter account has not been linked.
+     */
+    optional string twUsername = 3;
+    /**
+     * If true, a post will be sent to Facebook when a truck goes in to serving mode.
+     * This requires the user to be a Vendor, otherwise this field will be ignored.
+     *
+     * Will be null if a Facebook account has not been linked.
+     */
+    optional boolean postToFb = 4;
+    /**
+     * If true, a post will be sent to Twitter when a truck goes in to serving mode.
+     * This requires the user to be a Vendor, otherwise this field will be ignored.
+     *
+     * Will be null if a Twitter account has not been linked.
+     */
+    optional boolean postToTw = 5;
+}

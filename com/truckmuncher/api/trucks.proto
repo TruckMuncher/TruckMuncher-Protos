@@ -8,8 +8,8 @@ service TruckService {
     rpc getActiveTrucks (ActiveTrucksRequest) returns (ActiveTrucksResponse);
 
     /**
-     * If a truck for the vendor does not exist, a new truck will be created.
-     * When using from a native app, check the response and handle the case of an incomplete truck.
+     * Returns all trucks for the currently logged in user. A new truck will **not** be created
+     * if one did not previously exist.
      *
      * This call requires Vendor authorization
      */
@@ -136,10 +136,6 @@ message ModifyTruckRequest {
      * Should be in the format of (xxx) xxx-xxxx.
      */
     optional string phoneNumber = 7;
-    /**
-     * If true, then location will be reported when trucks enter serving mode.
-     */
-    optional bool postToSocialServices = 8;
 }
 
 message Truck {
@@ -173,10 +169,6 @@ message Truck {
     optional bool approved = 9;
 
     optional bool approvalPending = 10;
-    /**
-     * If true, then location will be reported when trucks enter serving mode.
-     */
-    optional bool postToSocialServices = 11;
 }
 
 message ServingModeRequest {
@@ -193,14 +185,6 @@ message ServingModeRequest {
      * Value in the range [-180, 180]
      */
     optional double truckLongitude = 4;
-    /**
-     * Used by the server to post a location to Twitter
-     */
-    optional string twitterToken = 5;
-    /**
-     * Used by the server to post a location to Facebook
-     */
-    optional string facebookToken = 6;
 }
 
 message ServingModeResponse {
