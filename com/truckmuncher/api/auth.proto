@@ -10,7 +10,7 @@ service AuthService {
     /**
      * Returns the full User model plus a session token.
      */
-    rpc getAuth (AuthRequest) returns (UserResponse);
+    rpc getAuth (AuthRequest) returns (com.truckmuncher.api.user.User);
 
     /**
      * Deletes an existing session if it exists.

@@ -8,7 +8,7 @@ service UserService {
      *
      * This call requires authorization
      */
-    rpc linkAccount (LinkAccountRequest) returns (UserResponse);
+    rpc linkAccount (LinkAccountRequest) returns (User);
 
     /**
      * Unlink a social media account that has been previously linked to your existing account. This can 
@@ -16,14 +16,14 @@ service UserService {
      *
      * This call requires authorization
      */
-    rpc unlinkAccounts (UnlinkAccountsRequest) returns (UserResponse);
+    rpc unlinkAccounts (UnlinkAccountsRequest) returns (User);
 
     /**
      * Update a user's account. This can be used by regular users or vendors.
      *
      * This call requires authorization
      */
-    rpc updateAccount (UpdateAccountRequest) returns (UserResponse);
+    rpc modifyAccount (ModifyAccountRequest) returns (User);
 
     /**
      * Adds a truck to a User's list of favorite trucks. This can be used by regular users
@@ -49,11 +49,11 @@ message UnlinkAccountsRequest {
     /**
      * Determines whether or not to unlink your Twitter account.
      */
-    optional boolean twitter = 1;
+    optional bool twitter = 1;
     /**
      * Determines whether or not to unlink your Facebook account.
      */
-    optional boolean facebook = 2;
+    optional bool facebook = 2;
 }
 
 message FavoriteRequest {
@@ -70,7 +70,24 @@ message FavoriteResponse {
     repeated string favorites = 1;
 }
 
-message UserResponse {
+message ModifyAccountRequest {
+    /**
+     * If true, a post will be sent to Facebook when a truck goes in to serving mode.
+     * This requires the user to be a Vendor, otherwise this field will be ignored.
+     *
+     * Will be null if a Facebook account has not been linked.
+     */
+    optional bool postToFb = 1;
+    /**
+     * If true, a post will be sent to Twitter when a truck goes in to serving mode.
+     * This requires the user to be a Vendor, otherwise this field will be ignored.
+     *
+     * Will be null if a Twitter account has not been linked.
+     */
+    optional bool postToTw = 2;
+}
+
+message User {
     /**
      * Suitable for unique identification.
      */
@@ -93,12 +110,12 @@ message UserResponse {
      *
      * Will be null if a Facebook account has not been linked.
      */
-    optional boolean postToFb = 4;
+    optional bool postToFb = 4;
     /**
      * If true, a post will be sent to Twitter when a truck goes in to serving mode.
      * This requires the user to be a Vendor, otherwise this field will be ignored.
      *
      * Will be null if a Twitter account has not been linked.
      */
-    optional boolean postToTw = 5;
+    optional bool postToTw = 5;
 }
