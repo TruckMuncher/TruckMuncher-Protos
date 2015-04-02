@@ -26,6 +26,13 @@ service UserService {
     rpc modifyAccount (ModifyAccountRequest) returns (User);
 
     /**
+     * Retrieve all of a user's favorite trucks.
+     *
+     * This call requires authorization
+     */
+    rpc getFavorites (GetFavoritesRequest) returns (FavoriteResponse);
+
+    /**
      * Adds a truck to a User's list of favorite trucks. This can be used by regular users
      * or vendors.
      *
@@ -43,6 +50,11 @@ service UserService {
 }
 
 message LinkAccountRequest {
+    /**
+     * If true, a post will be sent to the social media site when a truck goes in to serving mode.
+     * This requires the user to be a Vendor, otherwise this field will be ignored.
+     */
+    optional bool postActivity = 1;
 }
 
 message UnlinkAccountsRequest {
@@ -54,6 +66,9 @@ message UnlinkAccountsRequest {
      * Determines whether or not to unlink your Facebook account.
      */
     optional bool facebook = 2;
+}
+
+message GetFavoritesRequest {
 }
 
 message FavoriteRequest {
