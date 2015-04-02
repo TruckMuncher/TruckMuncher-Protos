@@ -10,7 +10,7 @@ service AuthService {
     /**
      * Returns the full User model plus a session token.
      */
-    rpc getAuth (AuthRequest) returns (com.truckmuncher.api.user.User);
+    rpc getAuth (AuthRequest) returns (AuthResponse);
 
     /**
      * Deletes an existing session if it exists.
@@ -19,6 +19,28 @@ service AuthService {
 }
 
 message AuthRequest {
+}
+
+/**
+ * The full user model plus a session token.
+ */
+message AuthResponse {
+	/**
+	 * Uniquely identifies the logged in user. This field is no longer used, see #4.
+	 */
+	required string userId = 1;
+	/**
+	 * The Twitter or Facebook username. This field is no longer used, see #4.
+	 */
+	required string username = 2;
+	/**
+	 * The session token used on all further requests.
+	 */
+	required string sessionToken = 3;
+	/**
+	 * The new User model.
+	 */
+	optional com.truckmuncher.api.user.User user = 4;
 }
 
 message DeleteAuthResponse {
