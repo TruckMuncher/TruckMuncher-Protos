@@ -54,18 +54,18 @@ message LinkAccountRequest {
      * If true, a post will be sent to the social media site when a truck goes in to serving mode.
      * This requires the user to be a Vendor, otherwise this field will be ignored.
      */
-    optional bool postActivity = 1;
+    optional bool postActivity = 1 [default = false];
 }
 
 message UnlinkAccountsRequest {
     /**
      * Determines whether or not to unlink your Twitter account.
      */
-    optional bool twitter = 1;
+    optional bool twitter = 1 [default = false];
     /**
      * Determines whether or not to unlink your Facebook account.
      */
-    optional bool facebook = 2;
+    optional bool facebook = 2 [default = false];
 }
 
 message GetFavoritesRequest {
