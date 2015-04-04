@@ -3,6 +3,13 @@ package com.truckmuncher.api.user;
 service UserService {
 
     /**
+     * Retrieve user account.
+     *
+     * This call requires authorization
+     */
+    rpc getAccount (GetAccountRequest) returns (User);
+
+    /**
      * Link another social media account to your existing account. This can be used by regular
      * users or vendors.
      *
@@ -47,6 +54,9 @@ service UserService {
      * This call requires authorization
      */
     rpc removeFavorite (FavoriteRequest) returns (FavoriteResponse);
+}
+
+message GetAccountRequest {
 }
 
 message LinkAccountRequest {
