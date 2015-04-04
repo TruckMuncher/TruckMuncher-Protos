@@ -136,6 +136,8 @@ message ModifyTruckRequest {
      * Should be in the format of (xxx) xxx-xxxx.
      */
     optional string phoneNumber = 7;
+    
+    optional string website = 8;
 }
 
 message Truck {
@@ -169,6 +171,8 @@ message Truck {
     optional bool approved = 9;
 
     optional bool approvalPending = 10;
+    
+    optional string website = 11;
 }
 
 message ServingModeRequest {
