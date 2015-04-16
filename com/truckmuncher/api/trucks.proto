@@ -77,6 +77,23 @@ message ActiveTrucksResponse {
          * Value in the range [-180, 180]
          */
         required double longitude = 3;
+        
+        /** 
+         * Indicates whether the truck's location is verified or not.
+         */
+        optional bool verified = 4;
+        
+        /**
+         * Indicates the current upvote/downvote score.
+         */
+        optional int score = 5;
+        
+        /**
+         * Signifies the user's vote for the truck. positive numbers are upvotes, negatives are downvotes, anything else 
+         * (null or 0) means that the user has not provided a vote.
+         */
+        optional bool userVote = 6;
+        
     }
 }
 
