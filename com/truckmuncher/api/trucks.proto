@@ -6,7 +6,7 @@ service TruckService {
      * Get the locations of active food trucks in the Region in which the search is performed.
      */
     rpc getActiveTrucks (ActiveTrucksRequest) returns (ActiveTrucksResponse);
-    
+
     /**
      * Returns all trucks for the currently logged in user. A new truck will **not** be created
      * if one did not previously exist.
@@ -41,7 +41,6 @@ service TruckService {
      * This call requires user to be logged in
      */
     rpc reportServingMode (ServingModeRequest) returns (ServingModeResponse);
-
 
     /**
      * Requests that a truck gets approval from a member of our team to go live and get placed on the map.
@@ -86,23 +85,19 @@ message ActiveTrucksResponse {
          * Value in the range [-180, 180]
          */
         required double longitude = 3;
-        
         /** 
          * Indicates whether the truck's location is verified or not.
          */
         optional bool verified = 4;
-        
         /**
          * Indicates the current upvote/downvote score.
          */
         optional int score = 5;
-        
         /**
-         * Signifies the user's vote for the truck. positive numbers are upvotes, negatives are downvotes, anything else 
+         * Signifies the user's vote for the truck. Positive numbers are upvotes, negatives are downvotes, anything else 
          * (null or 0) means that the user has not provided a vote.
          */
         optional bool userVote = 6;
-        
     }
 }
 
@@ -218,7 +213,7 @@ message ServingModeRequest {
 }
 
 message ServingModeResponse {
-      /**
+    /**
      * The id of the truck that was reported.
      */
     optional string truckId = 1;
