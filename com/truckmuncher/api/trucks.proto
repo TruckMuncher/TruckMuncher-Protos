@@ -34,7 +34,7 @@ service TruckService {
      * This call requires user to be logged in
      */
     rpc modifyServingMode (ServingModeRequest) returns (ServingModeResponse);
-    
+
     /**
      * Report serving mode status for a truck in a location
      *
