@@ -28,17 +28,18 @@ service TruckService {
     rpc modifyTruckProfile (ModifyTruckRequest) returns (Truck);
 
     /**
-     * (alias for reportServingMode)
      * Modify the serving mode for a truck.
      *
-     * This call requires user to be logged in
+     * This call is an alias for reportServingMode
+     * This call is deprecated and should no longer be used by clients. It will be removed in the near future.
+     * This call requires the user to be logged in
      */
     rpc modifyServingMode (ServingModeRequest) returns (ServingModeResponse);
 
     /**
      * Report serving mode status for a truck in a location
      *
-     * This call requires user to be logged in
+     * This call requires the user to be logged in
      */
     rpc reportServingMode (ServingModeRequest) returns (ServingModeResponse);
 
