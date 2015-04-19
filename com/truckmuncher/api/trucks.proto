@@ -89,14 +89,13 @@ message ActiveTrucksResponse {
         /** 
          * Indicates whether the truck's location is verified or not.
          */
-        optional bool verified = 4;
+        optional bool verified = 4 [default = false];
         /**
-         * Indicates the current upvote/downvote score.
+         * Indicates the current upvote/downvote score. Value in the range [0, max].
          */
         optional int score = 5;
         /**
-         * Signifies the user's vote for the truck. Positive numbers are upvotes, negatives are downvotes, anything else 
-         * (null or 0) means that the user has not provided a vote.
+         * Signifies the user's vote for the truck for the current "serving period". True signifies an upvote, false a downvote. Null means that the user has not voted.
          */
         optional bool userVote = 6;
     }
