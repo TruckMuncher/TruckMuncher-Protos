@@ -93,7 +93,7 @@ message ActiveTrucksResponse {
         /**
          * Indicates the current upvote/downvote score. Value in the range [0, max].
          */
-        optional int score = 5;
+        optional int32 score = 5;
         /**
          * Signifies the user's vote for the truck for the current "serving period". True signifies an upvote, false a downvote. Null means that the user has not voted.
          */
