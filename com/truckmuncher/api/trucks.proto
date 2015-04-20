@@ -213,22 +213,6 @@ message ServingModeRequest {
 }
 
 message ServingModeResponse {
-    /**
-     * The id of the truck that was reported.
-     */
-    optional string truckId = 1;
-    /**
-     * Value in the range [-90, 90]
-     */
-    optional double latitude = 2;
-    /**
-     * Value in the range [-180, 180]
-     */
-    optional double longitude = 3;
-    /**
-     * The aggregated upvote/downvote score for the truck.
-     */
-    optional int currentScore = 4;
 }
 
 message ApprovalRequest {
