@@ -212,13 +212,9 @@ message ServingModeRequest {
      */
     optional double truckLongitude = 4;
     /**
-     * Value between 0 and 8
-     */ 
-    optional int32 durationHours = 5;
-    /**
-     * Value between 0 and 60
+     * Value between 0 and 720 (maximum 12 hours)
      */
-    optional int32 durationMinutes = 6;
+    optional int32 durationMinutes = 5;
 }
 
 message ServingModeResponse {
