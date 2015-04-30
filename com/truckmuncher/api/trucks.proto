@@ -39,7 +39,8 @@ service TruckService {
     /**
      * Report serving mode status for a truck in a location
      *
-     * This call requires the user to be logged in
+     * This call requires the user to be logged in.
+     * When duration is provided by a vendor (the owner of the truck), it indicates how long the vendor will be at the location.
      */
     rpc reportServingMode (ServingModeRequest) returns (ServingModeResponse);
 
@@ -210,6 +211,10 @@ message ServingModeRequest {
      * Value in the range [-180, 180]
      */
     optional double truckLongitude = 4;
+    /**
+     * Value between 0 and 720 (maximum 12 hours)
+     */
+    optional int32 durationMinutes = 5;
 }
 
 message ServingModeResponse {
