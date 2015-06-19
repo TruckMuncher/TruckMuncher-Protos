@@ -12,6 +12,9 @@ Step 1: Install and run [pilgrimize](https://www.npmjs.org/package/pilgrimize) f
 
 Step 2: Visit [Pilgrim](http://pilgrim.fender.io) while the process is still running in your terminal.
 
+## Building
+To generate the source code for the protos, run `./generate.sh`
+
 ## Custom Generators
 We have two custom generators that we use: one for generating the API code, one for the Android code.
 
